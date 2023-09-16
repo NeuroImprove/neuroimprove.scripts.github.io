@@ -58,7 +58,6 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
-console.log("form settings loaded!");
 var Webflow = Webflow || [];
 Webflow.push(function() {
   $(document).off("submit");
