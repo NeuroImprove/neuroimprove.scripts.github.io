@@ -1,22 +1,33 @@
 console.log("form settings loaded!");
-var s = s || [];
-s.push(function() {
-  $(document).off("submit"), $("form").submit(function(a) {
-    a.preventDefault();
-    const t = $(this), o = $("[type=submit]", t), e = o.val(), i = o.attr("data-wait"), r = t.attr("method"), f = t.attr("action"), n = t.attr("data-redirect"), d = t.serialize();
-    i && o.val(i), $.ajax(f, {
-      data: d,
-      method: r
-    }).done((l) => {
-      if (n) {
-        window.location = n;
+var Webflow = Webflow || [];
+Webflow.push(function() {
+  $(document).off("submit");
+  $("form").submit(function(e) {
+    e.preventDefault();
+    const $form = $(this);
+    const $submit = $("[type=submit]", $form);
+    const buttonText = $submit.val();
+    const buttonWaitingText = $submit.attr("data-wait");
+    const formMethod = $form.attr("method");
+    const formAction = $form.attr("action");
+    const formRedirect = $form.attr("data-redirect");
+    const formData = $form.serialize();
+    if (buttonWaitingText) {
+      $submit.val(buttonWaitingText);
+    }
+    $.ajax(formAction, {
+      data: formData,
+      method: formMethod
+    }).done((res) => {
+      if (formRedirect) {
+        window.location = formRedirect;
         return;
       }
-      t.hide().siblings(".w-form-done").show().siblings(".w-form-fail").hide();
-    }).fail((l) => {
-      t.siblings(".w-form-done").hide().siblings(".w-form-fail").show();
+      $form.hide().siblings(".w-form-done").show().siblings(".w-form-fail").hide();
+    }).fail((res) => {
+      $form.siblings(".w-form-done").hide().siblings(".w-form-fail").show();
     }).always(() => {
-      o.val(e);
+      $submit.val(buttonText);
     });
   });
 });
