@@ -43,7 +43,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const utmParamsFromCookies = getCookie("utm_params") ? JSON.parse(getCookie("utm_params")) : {};
   if (utmParamsFromCookies) {
     const pageTitle = document.title;
-    utmParamsFromCookies["landing_page"] = pageTitle;
+    utmParamsFromCookies["conversion_page"] = pageTitle;
     const hostName = window.location.hostname;
     utmParamsFromCookies["hostname"] = hostName;
     const forms = document.querySelectorAll('form[formType="captureLead"]');
