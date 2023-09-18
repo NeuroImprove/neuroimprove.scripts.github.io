@@ -19,7 +19,7 @@ function getCookie(name) {
     return acc;
   }, {})[name];
 }
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("load", () => {
   let analyticsUserId = "";
   gtag("get", "G-NMP27LP3KJ", "client_id", function(clientId) {
     console.log("clientId=>", clientId);
