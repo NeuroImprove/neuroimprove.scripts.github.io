@@ -20,11 +20,6 @@ function getCookie(name) {
   }, {})[name];
 }
 window.addEventListener("load", () => {
-  let analyticsUserId = "";
-  gtag("get", "G-NMP27LP3KJ", "client_id", function(clientId) {
-    console.log("clientId=>", clientId);
-    analyticsUserId = clientId;
-  });
   const queryParams = getQueryParams();
   const marketingParams = [
     "utm_source",
@@ -47,11 +42,14 @@ window.addEventListener("load", () => {
   }
   const utmsForTheHiddenFieldsForm = getCookie("utm_params") ? JSON.parse(getCookie("utm_params")) : {};
   if (utmsForTheHiddenFieldsForm) {
+    gtag("get", "G-NMP27LP3KJ", "client_id", function(clientId) {
+      utmsForTheHiddenFieldsForm["analytics_user_id"] = clientId;
+    });
+    console.log("utmsForTheHiddenFieldsForm=>", utmsForTheHiddenFieldsForm);
     const pageTitle = document.title;
     utmsForTheHiddenFieldsForm["conversion_page"] = pageTitle;
     const hostName = window.location.hostname;
     utmsForTheHiddenFieldsForm["hostname"] = hostName;
-    utmsForTheHiddenFieldsForm["analytics_user_id"] = analyticsUserId;
     const forms = document.querySelectorAll('form[formType="captureLead"]');
     forms.forEach((form) => {
       Object.entries(utmsForTheHiddenFieldsForm).forEach(([key, value]) => {
