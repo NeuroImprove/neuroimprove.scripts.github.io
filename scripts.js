@@ -58,11 +58,11 @@ window.addEventListener("load", () => {
     });
     gtag("get", "G-NMP27LP3KJ", "client_id", function(clientId) {
       console.log("clientId=>", clientId);
-      forms[0].appendChild({
-        type: "hidden",
-        name: "analytics_user_id",
-        value: clientId
-      });
+      const hiddenInput = document.createElement("input");
+      hiddenInput.type = "hidden";
+      hiddenInput.name = "analytics_user_id";
+      hiddenInput.value = clientId;
+      forms[0].appendChild(hiddenInput);
     });
   }
 });
