@@ -19,6 +19,7 @@ function getCookie(name) {
     return acc;
   }, {})[name];
 }
+console.log("traking script loaded");
 window.addEventListener("DOMContentLoaded", () => {
   const queryParams = getQueryParams();
   const marketingParams = [
@@ -58,6 +59,7 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+console.log("form script loaded");
 var Webflow = Webflow || [];
 Webflow.push(function() {
   $(document).off("submit");
