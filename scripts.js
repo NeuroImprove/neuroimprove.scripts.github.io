@@ -28,7 +28,8 @@ window.addEventListener("load", () => {
     "utm_term",
     "utm_device",
     "utm_placement",
-    "utm_gclid"
+    "utm_gclid",
+    "fbclid"
     // Add more params here
   ];
   let utmParams = {};
