@@ -63,6 +63,8 @@ Webflow.push(function() {
   $(document).off("submit");
   $("form").submit(function(e) {
     e.preventDefault();
+    const submitButton = $(e.target).find("input[type=submit]");
+    submitButton.prop("disabled", true);
     const $form = $(this);
     const $submit = $("[type=submit]", $form);
     const buttonText = $submit.val();
