@@ -47,6 +47,8 @@ window.addEventListener("load", () => {
     utmsForTheHiddenFieldsForm["conversion_page"] = pageTitle;
     const hostName = window.location.hostname;
     utmsForTheHiddenFieldsForm["hostname"] = hostName;
+    const referrer = document.referrer || "Direct";
+    utmsForTheHiddenFieldsForm["referrer"] = referrer;
     const forms = document.querySelectorAll('form[formType="captureLead"]');
     forms.forEach((form) => {
       Object.entries(utmsForTheHiddenFieldsForm).forEach(([key, value]) => {
